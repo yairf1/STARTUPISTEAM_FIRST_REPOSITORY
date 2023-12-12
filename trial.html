@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <button id="button">לחץ פה כדי לפתוח את המחסום</button>
+    </body>
+    <script>
+        document.getElementById("button").onclick =  function sendCommand(command) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://<arduino_ip_address>/" + command, true); // Replace <arduino_ip_address> with the actual IP address of your Arduino device
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                    console.log("Command sent successfully");
+                    } else {
+                    console.error("Failed to send command");
+                    }
+                }
+            };
+            xhr.send();
+        }
+      </script>
+</html>
